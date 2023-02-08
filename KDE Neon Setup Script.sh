@@ -85,7 +85,7 @@ mainmenu () {
 	clear
  	tput setaf 3
 	echo "==================================="
-	echo " --- KDE Neon Setup Script 5.1 ---"
+	echo " --- KDE Neon Setup Script 5.2 ---"
 	echo "==================================="
 	echo "Supported KDE Neon Versions (x86_64): Ubuntu 22.04 LTS Base"
 	echo "Recommended Free Space: 40 GB"
@@ -177,7 +177,7 @@ full () {
 	sleep 3
     clear
 	common
-	runcheck sudo apt install -y ubuntu-restricted-extras synaptic remmina bleachbit frozen-bubble musescore3 asunder k3b pavucontrol elisa solaar p7zip-full p7zip-rar lame neofetch ffmpeg webhttrack tree easytag android-tools-adb android-tools-fastboot kwave kamoso nikwi supertux dconf-editor ffmpegthumbs fonts-cantarell krita gimp htop curl git handbrake gtk-3-examples python3-pip cpu-x hardinfo mcomix gscan2pdf skanlite supertuxkart unzip gsmartcontrol kdenlive transmission 
+	runcheck sudo apt install -y ubuntu-restricted-extras muon remmina bleachbit frozen-bubble musescore3 asunder k3b pavucontrol elisa solaar p7zip-full p7zip-rar lame neofetch ffmpeg webhttrack tree android-tools-adb android-tools-fastboot kwave kamoso nikwi supertux dconf-editor ffmpegthumbs fonts-cantarell krita gimp htop curl git handbrake gtk-3-examples python3-pip cpu-x hardinfo mcomix gscan2pdf skanlite supertuxkart unzip gsmartcontrol kdenlive transmission-qt kid3 subtitlecomposer
 	runcheck sudo dpkg --add-architecture i386
 	runcheck sudo apt update -y
 	runcheck sudo apt install -y libc6-i386 libx11-6:i386 libegl1-mesa:i386 zlib1g:i386 libstdc++6:i386 libgl1-mesa-dri:i386 libasound2:i386
@@ -199,10 +199,7 @@ full () {
 	runcheck flatpak install -y flathub com.github.muriloventuroso.pdftricks
 	runcheck flatpak install -y flathub com.github.tchx84.Flatseal
 	runcheck flatpak install -y flathub org.onlyoffice.desktopeditors
-	runcheck flatpak install -y flathub app.drey.EarTag
 	runcheck flatpak install -y flathub com.calibre_ebook.calibre
-	runcheck flatpak install -y flathub org.musicbrainz.Picard
-	runcheck flatpak install -y flathub org.kde.subtitlecomposer
 	runcheck flatpak install -y flathub com.obsproject.Studio
 	runcheck flatpak install -y flathub org.telegram.desktop
 	runcheck flatpak install -y flathub net.lutris.Lutris
@@ -224,7 +221,7 @@ minimal () {
 	sleep 3
 	clear
 	common
-	runcheck sudo apt install -y ubuntu-restricted-extras synaptic pavucontrol elisa p7zip-full p7zip-rar ffmpeg dconf-editor ffmpegthumbs fonts-cantarell htop curl git gtk-3-examples python3-pip cpu-x hardinfo gscan2pdf skanlite unzip gsmartcontrol neofetch
+	runcheck sudo apt install -y ubuntu-restricted-extras muon pavucontrol elisa p7zip-full p7zip-rar ffmpeg dconf-editor ffmpegthumbs fonts-cantarell htop curl git gtk-3-examples python3-pip cpu-x hardinfo gscan2pdf skanlite unzip gsmartcontrol neofetch
 	runcheck sudo dpkg --add-architecture i386
 	runcheck sudo apt update -y
 	runcheck sudo apt install -y libc6-i386 libx11-6:i386 libegl1-mesa:i386 zlib1g:i386 libstdc++6:i386 libgl1-mesa-dri:i386 libasound2:i386
@@ -249,7 +246,7 @@ minimal () {
 echo "Loaded minimal."
 common () {
 	runcheck sudo apt update -y
-	runcheck sudo apt install -y gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-plugins-good libavcodec-extra gstreamer1.0-libav chromium-codecs-ffmpeg-extra libdvd-pkg libheif1 libheif-examples libquicktime2 heif-gdk-pixbuf heif-thumbnailer kimageformat-plugins kio-extras viewnior btrfs-progs language-selector-gnome haruna kcalc
+	runcheck sudo apt install -y gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-plugins-good libavcodec-extra gstreamer1.0-libav chromium-codecs-ffmpeg-extra libdvd-pkg libheif1 libheif-examples libquicktime2 heif-gdk-pixbuf heif-thumbnailer kimageformat-plugins kio-extras viewnior btrfs-progs language-selector-gnome haruna kcalc krename power-profiles-daemon
 	runcheck sudo dpkg-reconfigure libdvd-pkg
 }
 echo "Loaded common."
