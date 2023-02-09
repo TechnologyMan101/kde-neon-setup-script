@@ -84,9 +84,9 @@ echo "Loaded sysreqfail."
 mainmenu () {
 	clear
  	tput setaf 3
-	echo "==================================="
-	echo " --- KDE Neon Setup Script 5.4 ---"
-	echo "==================================="
+	echo "====================================="
+	echo " --- KDE Neon Setup Script 5.4.1 ---"
+	echo "====================================="
 	echo "Supported KDE Neon Versions (x86_64): Ubuntu 22.04 LTS Base"
 	echo "Recommended Free Space: 40 GB"
 	tput setaf 10
