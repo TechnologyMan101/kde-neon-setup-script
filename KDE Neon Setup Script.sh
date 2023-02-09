@@ -85,7 +85,7 @@ mainmenu () {
 	clear
  	tput setaf 3
 	echo "==================================="
-	echo " --- KDE Neon Setup Script 5.3 ---"
+	echo " --- KDE Neon Setup Script 5.4 ---"
 	echo "==================================="
 	echo "Supported KDE Neon Versions (x86_64): Ubuntu 22.04 LTS Base"
 	echo "Recommended Free Space: 40 GB"
@@ -248,7 +248,7 @@ minimal () {
 echo "Loaded minimal."
 common () {
 	runcheck sudo apt update -y
-	runcheck sudo apt install -y gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-plugins-good libavcodec-extra gstreamer1.0-libav chromium-codecs-ffmpeg-extra libdvd-pkg libheif1 libheif-examples libquicktime2 heif-gdk-pixbuf heif-thumbnailer kimageformat-plugins kio-extras viewnior btrfs-progs language-selector-gnome haruna kcalc krename power-profiles-daemon filelight kdenetwork-filesharing libsmbclient samba smbclient
+	runcheck sudo apt install -y gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-plugins-good libavcodec-extra gstreamer1.0-libav chromium-codecs-ffmpeg-extra libdvd-pkg libheif1 libheif-examples libquicktime2 heif-gdk-pixbuf heif-thumbnailer kimageformat-plugins kio-extras viewnior btrfs-progs language-selector-gnome haruna kcalc krename power-profiles-daemon filelight kdenetwork-filesharing libsmbclient samba smbclient xserver-xorg-input-synaptics
 	runcheck sudo dpkg-reconfigure libdvd-pkg
 }
 echo "Loaded common."
