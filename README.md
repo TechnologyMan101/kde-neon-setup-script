@@ -4,7 +4,7 @@ Bash script to set up a fresh install of KDE Neon.
 
 # Documentation
 
-Version 5.4
+Version 5.4.1
 
 Supported KDE Neon Versions: Based on Ubuntu 22.04 LTS
 
@@ -32,7 +32,7 @@ Change “Make Window Fullscreen” to “Meta+F11”
 
 # Language Support
 
-If you need additional language support, run `gnome-language-selector` in a terminal and add your languages in the resulting GUI. Reboot after installing languages. 
+After running the script, if you need additional language support, run `gnome-language-selector` in a terminal and add your languages in the resulting GUI. Reboot after installing languages. 
 
 
 # Run Script:
