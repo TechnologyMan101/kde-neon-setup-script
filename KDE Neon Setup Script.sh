@@ -85,7 +85,7 @@ mainmenu () {
 	clear
  	tput setaf 3
 	echo "==================================="
-	echo " --- KDE Neon Setup Script 5.8 ---"
+	echo " --- KDE Neon Setup Script 5.9 ---"
 	echo "==================================="
 	echo "Supported KDE Neon Versions (x86_64): Ubuntu 22.04 LTS Base"
 	echo "Recommended Free Space: 40 GB"
@@ -270,7 +270,7 @@ appendbashrc1 () {
 	appendbashrcinfo
 	echo "Adding sysupdate alias and neofetch to .bashrc..."
 	runcheck sed -i '/sysupdate/d' ~/.bashrc
-	runcheck echo 'alias sysupdate="sudo apt update -y && sudo apt full-upgrade -y && sudo apt autoremove -y --purge && sudo apt autoclean -y && flatpak update -y && flatpak uninstall -y --unused --delete-data && pip3 install pip wheel youtube-dl yt-dlp speedtest-cli mangadex-downloader[optional] animdl -U && pip3 cache purge"' >> ~/.bashrc
+	runcheck echo 'alias sysupdate="sudo apt update -y && sudo apt full-upgrade -y --allow-downgrades && sudo apt autoremove -y --purge && sudo apt autoclean -y && flatpak update -y && flatpak uninstall -y --unused --delete-data && pip3 install pip wheel youtube-dl yt-dlp speedtest-cli mangadex-downloader[optional] animdl -U && pip3 cache purge"' >> ~/.bashrc
 	runcheck sed -i '/neofetch/d' ~/.bashrc
 	runcheck echo 'neofetch' >> ~/.bashrc
 }
@@ -279,7 +279,7 @@ appendbashrc2 () {
 	appendbashrcinfo
 	echo "Adding sysupdate alias and neofetch to .bashrc..."
 	runcheck sed -i '/sysupdate/d' ~/.bashrc
-	runcheck echo 'alias sysupdate="sudo apt update -y && sudo apt full-upgrade -y && sudo apt autoremove -y --purge && sudo apt autoclean -y && flatpak update -y && flatpak uninstall -y --unused --delete-data && pip3 install pip wheel speedtest-cli -U && pip3 cache purge"' >> ~/.bashrc
+	runcheck echo 'alias sysupdate="sudo apt update -y && sudo apt full-upgrade -y --allow-downgrades && sudo apt autoremove -y --purge && sudo apt autoclean -y && flatpak update -y && flatpak uninstall -y --unused --delete-data && pip3 install pip wheel speedtest-cli -U && pip3 cache purge"' >> ~/.bashrc
 	runcheck sed -i '/neofetch/d' ~/.bashrc
 	runcheck echo 'neofetch' >> ~/.bashrc
 }
