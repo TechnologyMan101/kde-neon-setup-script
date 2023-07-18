@@ -85,7 +85,7 @@ mainmenu () {
 	clear
  	tput setaf 3
 	echo "===================================="
-	echo " --- KDE Neon Setup Script 5.10 ---"
+	echo " --- KDE Neon Setup Script 5.11 ---"
 	echo "===================================="
 	echo "Supported KDE Neon Versions (x86_64): Ubuntu 22.04 LTS Base"
 	echo "Recommended Free Space: 40 GB"
@@ -203,6 +203,7 @@ full () {
 	runcheck flatpak install -y flathub com.obsproject.Studio
 	runcheck flatpak install -y flathub org.telegram.desktop
 	runcheck flatpak install -y flathub net.lutris.Lutris
+	runcheck flatpak install -y flathub io.missioncenter.MissionCenter
 	runcheck flatpak uninstall -y --unused --delete-data
 	runcheck pip3 install pip wheel yt-dlp speedtest-cli mangadex-downloader[optional] animdl -U
 	runcheck pip3 cache purge
@@ -237,6 +238,7 @@ minimal () {
 	runcheck flatpak install -y flathub com.github.muriloventuroso.pdftricks
 	runcheck flatpak install -y flathub com.github.tchx84.Flatseal
 	runcheck flatpak install -y flathub org.onlyoffice.desktopeditors
+	runcheck flatpak install -y flathub io.missioncenter.MissionCenter
 	runcheck flatpak update -y
 	runcheck flatpak uninstall -y --unused --delete-data
 	runcheck pip3 install pip wheel speedtest-cli -U
