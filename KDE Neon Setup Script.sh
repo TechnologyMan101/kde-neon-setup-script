@@ -85,7 +85,7 @@ mainmenu () {
 	clear
  	tput setaf 3
 	echo "===================================="
-	echo " --- KDE Neon Setup Script 5.12 ---"
+	echo " --- KDE Neon Setup Script 5.13 ---"
 	echo "===================================="
 	echo "Supported KDE Neon Versions (x86_64): Ubuntu 22.04 LTS Base"
 	echo "Recommended Free Space: 40 GB"
@@ -206,7 +206,7 @@ full () {
 	runcheck flatpak install -y flathub io.missioncenter.MissionCenter
 	runcheck flatpak install -y flathub org.prismlauncher.PrismLauncher
 	runcheck flatpak uninstall -y --unused --delete-data
-	runcheck pip3 install pip wheel yt-dlp speedtest-cli mangadex-downloader[optional] animdl -U
+	runcheck pip3 install pip wheel yt-dlp speedtest-cli mangadex-downloader[optional] animdl git+https://github.com/nathom/streamrip.git@dev -U
 	runcheck pip3 cache purge
 	echo "Adding current user to cdrom group..."
 	runcheck sudo usermod -aG cdrom $USER
