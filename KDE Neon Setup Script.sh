@@ -85,7 +85,7 @@ mainmenu () {
 	clear
  	tput setaf 3
 	echo "===================================="
-	echo " --- KDE Neon Setup Script 5.14 ---"
+	echo " --- KDE Neon Setup Script 5.15 ---"
 	echo "===================================="
 	echo "Supported KDE Neon Versions (x86_64): Ubuntu 22.04 LTS Base"
 	echo "Recommended Free Space: 40 GB"
@@ -289,7 +289,7 @@ appendbashrc2 () {
 echo "Loaded appendbashrc2."
 autofontinstall () {
 	echo "Installing the Essential Font Pack..."
-	runcheck sudo wget -O "/tmp/fontinstall.zip" "https://github.com/TechnologyMan101/script-extras/releases/download/20221012-1521/Essential.Font.Pack.zip"
+	runcheck sudo wget -O "/tmp/fontinstall.zip" "https://github.com/TechnologyMan101/script-extras/releases/download/20240122-2030/Essential.Font.Pack.zip"
 	sudo rm -rf "/usr/share/fonts/Essential Font Pack"
 	runcheck sudo unzip -o "/tmp/fontinstall.zip" -d "/usr/share/fonts"
 	runcheck sudo chmod -R 755 "/usr/share/fonts/Essential Font Pack"
