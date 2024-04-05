@@ -85,7 +85,7 @@ mainmenu () {
 	clear
  	tput setaf 3
 	echo "===================================="
-	echo " --- KDE Neon Setup Script 5.15 ---"
+	echo " --- KDE Neon Setup Script 5.17 ---"
 	echo "===================================="
 	echo "Supported KDE Neon Versions (x86_64): Ubuntu 22.04 LTS Base"
 	echo "Recommended Free Space: 40 GB"
@@ -205,8 +205,11 @@ full () {
 	runcheck flatpak install -y flathub net.lutris.Lutris
 	runcheck flatpak install -y flathub io.missioncenter.MissionCenter
 	runcheck flatpak install -y flathub org.prismlauncher.PrismLauncher
+	runcheck flatpak install -y flathub info.febvre.Komikku
+	runcheck flatpak install -y flathub io.github.diegoivan.pdf_metadata_editor
 	runcheck flatpak uninstall -y --unused --delete-data
-	runcheck pip3 install pip wheel yt-dlp speedtest-cli mangadex-downloader[optional] animdl git+https://github.com/nathom/streamrip.git@dev -U
+	runcheck pip3 install pip wheel speedtest-cli mangadex-downloader[optional] animdl git+https://github.com/nathom/streamrip.git@dev -U
+	runcheck pip3 install --pre yt-dlp -U
 	runcheck pip3 cache purge
 	echo "Adding current user to cdrom group..."
 	runcheck sudo usermod -aG cdrom $USER
@@ -240,6 +243,8 @@ minimal () {
 	runcheck flatpak install -y flathub com.github.tchx84.Flatseal
 	runcheck flatpak install -y flathub org.onlyoffice.desktopeditors
 	runcheck flatpak install -y flathub io.missioncenter.MissionCenter
+	runcheck flatpak install -y flathub info.febvre.Komikku
+	runcheck flatpak install -y flathub io.github.diegoivan.pdf_metadata_editor
 	runcheck flatpak update -y
 	runcheck flatpak uninstall -y --unused --delete-data
 	runcheck pip3 install pip wheel speedtest-cli -U
@@ -251,7 +256,7 @@ minimal () {
 echo "Loaded minimal."
 common () {
 	runcheck sudo apt update -y
-	runcheck sudo apt install -y gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-plugins-good libavcodec-extra gstreamer1.0-libav chromium-codecs-ffmpeg-extra libdvd-pkg libheif1 libheif-examples libquicktime2 heif-gdk-pixbuf heif-thumbnailer kimageformat-plugins kio-extras viewnior btrfs-progs language-selector-gnome haruna kcalc krename power-profiles-daemon filelight kdenetwork-filesharing libsmbclient samba smbclient xserver-xorg-input-synaptics kcharselect kweather gparted gpart gnome-disk-utility
+	runcheck sudo apt install -y gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-plugins-good libavcodec-extra gstreamer1.0-libav chromium-codecs-ffmpeg-extra libdvd-pkg libheif1 libheif-examples libquicktime2 heif-gdk-pixbuf heif-thumbnailer kimageformat-plugins kio-extras viewnior btrfs-progs language-selector-gnome haruna kcalc krename power-profiles-daemon filelight kdenetwork-filesharing libsmbclient samba smbclient xserver-xorg-input-synaptics kcharselect kweather gparted gpart gnome-disk-utility aria2 simple-scan
 	runcheck sudo dpkg-reconfigure libdvd-pkg
 }
 echo "Loaded common."
@@ -273,7 +278,7 @@ appendbashrc1 () {
 	appendbashrcinfo
 	echo "Adding sysupdate alias and neofetch to .bashrc..."
 	runcheck sed -i '/sysupdate/d' ~/.bashrc
-	runcheck echo 'alias sysupdate="sudo apt update -y && sudo apt full-upgrade -y --allow-downgrades && sudo apt autoremove -y --purge && sudo apt autoclean -y && flatpak update -y && flatpak uninstall -y --unused --delete-data && pip3 install pip wheel yt-dlp speedtest-cli mangadex-downloader[optional] animdl git+https://github.com/nathom/streamrip.git@dev -U && pip3 cache purge"' >> ~/.bashrc
+	runcheck echo 'alias sysupdate="sudo apt update -y && sudo apt full-upgrade -y --allow-downgrades && sudo apt autoremove -y --purge && sudo apt autoclean -y && flatpak update -y && flatpak uninstall -y --unused --delete-data && pip3 install pip wheel speedtest-cli mangadex-downloader[optional] animdl git+https://github.com/nathom/streamrip.git@dev -U && pip3 install --pre yt-dlp -U && pip3 cache purge"' >> ~/.bashrc
 	runcheck sed -i '/neofetch/d' ~/.bashrc
 	runcheck echo 'neofetch' >> ~/.bashrc
 }
