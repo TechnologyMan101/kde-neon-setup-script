@@ -4,7 +4,7 @@ Bash script to set up a fresh install of KDE Neon.
 
 # Documentation
 
-Version 5.15
+Version 5.17
 
 Supported KDE Neon Versions: Based on Ubuntu 22.04 LTS
 
@@ -38,11 +38,6 @@ After running the script, if you need additional language support, run `gnome-la
 # Run Script:
 
 Mark the script as executable by changing it in file properties or running `chmod +x /path/to/file`. Then run it in Terminal with `bash /path/to/file`
-
-
-# Plasma Widgets
-
-Simple Overview Pager by tuxg0d – replace default pager in taskbar
 
 
 # VM Users
