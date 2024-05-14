@@ -4,7 +4,7 @@ Bash script to set up a fresh install of KDE Neon.
 
 # Documentation
 
-Version 5.17
+Version 5.18
 
 Supported KDE Neon Versions: Based on Ubuntu 22.04 LTS
 
@@ -23,16 +23,40 @@ Please add yourself to `vboxusers` using `sudo usermod -aG vboxusers $USER` in a
 
 # Keyboard Shortcuts:
 
-Change “Switch to next desktop” to “Ctrl+Meta+Right Arrow”
+Add shortcut for “Decrease Microphone Volume” using the keys “Meta+Ctrl+Alt+Down”
 
-Change “Switch to previous desktop” to “Ctrl+Meta+Left Arrow”
+Add shortcut for “Decrease Volume” using the keys “Ctrl+Alt+Down”
 
-Change “Make Window Fullscreen” to “Meta+F11”
+Add shortcut for “Increase Microphone Volume” using the keys “Meta+Ctrl+Alt+Up”
+
+Add shortcut for “Increase Volume” using the keys “Ctrl+Alt+Up”
+
+Add shortcut for “Mute” using the keys “Ctrl+Alt+Shift+Down”
+
+Add shortcut for “Mute Microphone” using the keys “Meta+Ctrl+Alt+Shift+Down”
+
+Add shortcut for “Media playback next” using the keys “Ctrl+Alt+End”
+
+Add shortcut for “Media playback previous” using the keys “Ctrl+Alt+Home”
+
+Add shortcut for “Play/Pause media playback” using the keys “Ctrl+Alt+Shift+Up”
+
+Add shortcut for “Make Window Fullscreen” using the keys “Meta+F11”
 
 
-# Language Support
+# Language Packs:
 
-After running the script, if you need additional language support, run `gnome-language-selector` in a terminal and add your languages in the resulting GUI. Reboot after installing languages. 
+The script will install language support packages for English, German, Japanese, and Thai. IBus will also be installed, specifically including the packages `ibus`, `ibus-wayland`, and `ibus-anthy`. If you would like to change the selection of languages or IBus modules, please edit the `languagepackinstall` function in the script. However, it is recommended to keep at least the English language pack and the packages `ibus` and `ibus-wayland`. 
+
+
+# Flatpak Applications and Cursor Themes:
+
+This issue mainly affects users on Wayland, which is the default session. If a Flatpak application displays a incorrect cursor theme or size, run `mkdir -p ~/.local/share/icons/default/ && nano ~/.local/share/icons/default/index.theme` in Terminal and type `[Icon Theme]`, then press Enter and type `Inherits=breeze_cursors`. Save the file by pressing Ctrl+X, then `y`, and then Enter. Make sure to change these variable values as appropriate to your system, as these follow KDE defaults. For example, if you use the white variant of the default Breeze cursors, change the value of the `Inherits` property to `Breeze_Light`. 
+
+
+# Overview Shortcut:
+
+Mark the `KDE Overview Shortcut.desktop` file as executable by changing permissions in file properties or running `chmod +x /path/to/file`. Then drag the file to the panel between the Application Launcher icon and the first application shortcut. This adds the shortcut as a widget. Note that the shortcut will not work until the script has been run due to dependencies. If you do not want to use the default workspace pager in addition to this shortcut, remove the default workspace pager. 
 
 
 # Run Script:
