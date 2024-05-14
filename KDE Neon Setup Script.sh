@@ -85,7 +85,7 @@ mainmenu () {
 	clear
  	tput setaf 3
 	echo "===================================="
-	echo " --- KDE Neon Setup Script 5.17 ---"
+	echo " --- KDE Neon Setup Script 5.18 ---"
 	echo "===================================="
 	echo "Supported KDE Neon Versions (x86_64): Ubuntu 22.04 LTS Base"
 	echo "Recommended Free Space: 40 GB"
@@ -177,7 +177,7 @@ full () {
 	sleep 3
     clear
 	common
-	runcheck sudo apt install -y ubuntu-restricted-extras muon remmina bleachbit frozen-bubble musescore3 asunder k3b libk3b8-extracodecs pavucontrol elisa solaar p7zip-full p7zip-rar lame neofetch ffmpeg webhttrack tree android-tools-adb android-tools-fastboot kwave kamoso nikwi supertux dconf-editor ffmpegthumbs fonts-cantarell krita gimp htop curl git handbrake gtk-3-examples python3-pip cpu-x hardinfo mcomix gscan2pdf skanlite supertuxkart unzip gsmartcontrol kdenlive transmission-qt kid3 subtitlecomposer skanpage
+	runcheck sudo apt install -y ubuntu-restricted-extras muon remmina bleachbit frozen-bubble musescore3 asunder k3b libk3b8-extracodecs pavucontrol elisa solaar p7zip-full p7zip-rar lame neofetch ffmpeg webhttrack tree android-tools-adb android-tools-fastboot kwave kamoso nikwi supertux dconf-editor ffmpegthumbs fonts-cantarell krita gimp htop curl git handbrake gtk-3-examples python3-pip cpu-x hardinfo mcomix gscan2pdf skanlite supertuxkart unzip gsmartcontrol kdenlive transmission-qt kid3 subtitlecomposer skanpage hugin
 	runcheck sudo dpkg --add-architecture i386
 	runcheck sudo apt update -y
 	runcheck sudo apt install -y libc6-i386 libx11-6:i386 libegl1-mesa:i386 zlib1g:i386 libstdc++6:i386 libgl1-mesa-dri:i386 libasound2:i386
@@ -186,6 +186,7 @@ full () {
 	sleep 3
 	runcheck sudo add-apt-repository -y ppa:ubuntuhandbook1/dvdstyler
 	runcheck sudo apt install -y dvdstyler
+	languagepackinstall
 	runcheck sudo apt update -y
 	runcheck sudo apt full-upgrade -y --allow-downgrades
 	runcheck sudo apt autoremove -y --purge
@@ -228,10 +229,11 @@ minimal () {
 	sleep 3
 	clear
 	common
-	runcheck sudo apt install -y ubuntu-restricted-extras muon pavucontrol elisa p7zip-full p7zip-rar ffmpeg dconf-editor ffmpegthumbs fonts-cantarell htop curl git gtk-3-examples python3-pip cpu-x hardinfo gscan2pdf skanlite unzip gsmartcontrol neofetch skanpage
+	runcheck sudo apt install -y ubuntu-restricted-extras muon pavucontrol elisa p7zip-full p7zip-rar ffmpeg dconf-editor ffmpegthumbs fonts-cantarell htop curl git gtk-3-examples python3-pip cpu-x hardinfo gscan2pdf skanlite unzip gsmartcontrol neofetch skanpage hugin
 	runcheck sudo dpkg --add-architecture i386
 	runcheck sudo apt update -y
 	runcheck sudo apt install -y libc6-i386 libx11-6:i386 libegl1-mesa:i386 zlib1g:i386 libstdc++6:i386 libgl1-mesa-dri:i386 libasound2:i386
+	languagepackinstall
 	runcheck sudo apt update -y
 	runcheck sudo apt full-upgrade -y --allow-downgrades
 	runcheck sudo apt autoremove -y --purge
@@ -256,7 +258,7 @@ minimal () {
 echo "Loaded minimal."
 common () {
 	runcheck sudo apt update -y
-	runcheck sudo apt install -y gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-plugins-good libavcodec-extra gstreamer1.0-libav chromium-codecs-ffmpeg-extra libdvd-pkg libheif1 libheif-examples libquicktime2 heif-gdk-pixbuf heif-thumbnailer kimageformat-plugins kio-extras viewnior btrfs-progs language-selector-gnome haruna kcalc krename power-profiles-daemon filelight kdenetwork-filesharing libsmbclient samba smbclient xserver-xorg-input-synaptics kcharselect kweather gparted gpart gnome-disk-utility aria2 simple-scan
+	runcheck sudo apt install -y gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-plugins-good libavcodec-extra gstreamer1.0-libav chromium-codecs-ffmpeg-extra libdvd-pkg libheif1 libheif-examples libquicktime2 heif-gdk-pixbuf heif-thumbnailer kimageformat-plugins kio-extras viewnior btrfs-progs language-selector-gnome haruna kcalc krename power-profiles-daemon filelight kdenetwork-filesharing libsmbclient samba smbclient kcharselect kweather gparted gpart gnome-disk-utility aria2 simple-scan qtchooser gcc-12
 	runcheck sudo dpkg-reconfigure libdvd-pkg
 }
 echo "Loaded common."
@@ -301,6 +303,25 @@ autofontinstall () {
 	runcheck sudo rm "/tmp/fontinstall.zip"
 }
 echo "Loaded autofontinstall."
+languagepackinstall () {
+	echo "Installing language packs..."
+	runcheck sudo apt install -y ibus ibus-wayland ibus-anthy
+	runcheck2 sudo apt install -y $(check-language-support -l en)
+	runcheck2 sudo apt install -y $(check-language-support -l de)
+	runcheck2 sudo apt install -y $(check-language-support -l ja)
+	runcheck2 sudo apt install -y $(check-language-support -l th)
+	mkdir -p ~/.config/autostart/
+	rm ~/.config/autostart/ibus-daemon.desktop
+	runcheck echo "[Desktop Entry]" >> ~/.config/autostart/ibus-daemon.desktop
+	runcheck echo "Exec=ibus-daemon" >> ~/.config/autostart/ibus-daemon.desktop
+	runcheck echo "Icon=" >> ~/.config/autostart/ibus-daemon.desktop
+	runcheck echo "Name=ibus-daemon" >> ~/.config/autostart/ibus-daemon.desktop
+	runcheck echo "Path=" >> ~/.config/autostart/ibus-daemon.desktop
+	runcheck echo "Terminal=False" >> ~/.config/autostart/ibus-daemon.desktop
+	runcheck echo "Type=Application" >> ~/.config/autostart/ibus-daemon.desktop
+	runcheck chmod +x ~/.config/autostart/ibus-daemon.desktop
+}
+echo "Loaded languagepackinstall."
 runcheck () {
 	IFS=$'\n'
 	command="$*"
@@ -336,6 +357,41 @@ runcheck () {
 	IFS=""
 }
 echo "Loaded runcheck."
+runcheck2 () {
+	IFS=$' \t\n'
+	command="$*"
+	retval=1
+	attempt=1
+	until [[ $retval -eq 0 ]] || [[ $attempt -gt 5 ]]; do
+		(
+			set +e
+			$command
+		)
+		retval=$?
+		attempt=$(( $attempt + 1 ))
+		if [[ $retval -ne 0 ]]; then
+			clear
+			tput setaf 9
+			echo "Oops! Something went wrong! Retrying in 3 seconds..."
+			tput sgr0
+			sleep 3
+			clear
+		fi
+	done
+	if [[ $retval -ne 0 ]] && [[ $attempt -gt 5 ]]; then
+		clear
+		tput setaf 9
+		echo "Oops! A fatal error has occurred and the program cannot continue. Returning to the main menu in 10 seconds..."
+		tput setaf 3
+		echo "Please try again later or if the problem persists, create an issue on GitHub."
+		tput sgr0
+		sleep 10
+		clear
+		mainmenu
+	fi
+	IFS=""
+}
+echo "Loaded runcheck2."
 tput setaf 3
 echo "Continuing..."
 tput sgr0
