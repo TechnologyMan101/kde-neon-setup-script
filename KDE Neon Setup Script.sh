@@ -18,8 +18,8 @@ checkcompatibility () {
 	fi
 	isneon="true"
 
-	# Check for 22.04 LTS
-	if ! echo $VERSION_ID | grep -qi "22.04"
+	# Check for 24.04 LTS
+	if ! echo $VERSION_ID | grep -qi "24.04"
 	then
 		sysreqfail
 	fi
@@ -63,7 +63,7 @@ echo "Loaded spacewarning."
 sysreqfail () {
 	clear
 	tput setaf 9
-	echo "System requirements not met. This script supports x86_64 versions of KDE Neon based on Ubuntu 22.04 LTS!!!"
+	echo "System requirements not met. This script supports x86_64 versions of KDE Neon based on Ubuntu 24.04 LTS!!!"
 	tput setaf 3
 	echo "If your error is not caused by a wrong KDE Neon version or OS architecture, please check to see if I have published a script for your system."
 	tput setaf 10
@@ -85,9 +85,9 @@ mainmenu () {
 	clear
  	tput setaf 3
 	echo "===================================="
-	echo " --- KDE Neon Setup Script 5.18 ---"
+	echo " --- KDE Neon Setup Script 5.19 ---"
 	echo "===================================="
-	echo "Supported KDE Neon Versions (x86_64): Ubuntu 22.04 LTS Base"
+	echo "Supported KDE Neon Versions (x86_64): Ubuntu 24.04 LTS Base"
 	echo "Recommended Free Space: 40 GB"
 	tput setaf 10
 	echo "Your current distro is $PRETTY_NAME."
@@ -177,10 +177,10 @@ full () {
 	sleep 3
     clear
 	common
-	runcheck sudo apt install -y ubuntu-restricted-extras muon remmina bleachbit frozen-bubble musescore3 asunder k3b libk3b8-extracodecs pavucontrol elisa solaar p7zip-full p7zip-rar lame neofetch ffmpeg webhttrack tree android-tools-adb android-tools-fastboot kwave kamoso nikwi supertux dconf-editor ffmpegthumbs fonts-cantarell krita gimp htop curl git handbrake gtk-3-examples python3-pip cpu-x hardinfo mcomix gscan2pdf skanlite supertuxkart unzip gsmartcontrol kdenlive transmission-qt kid3 subtitlecomposer skanpage hugin
+	runcheck sudo apt install -y ubuntu-restricted-extras synaptic remmina bleachbit frozen-bubble musescore3 asunder k3b libk3b8-extracodecs pavucontrol elisa solaar p7zip-full p7zip-rar lame neofetch ffmpeg webhttrack tree android-tools-adb android-tools-fastboot kwave kamoso nikwi supertux dconf-editor ffmpegthumbs fonts-cantarell krita gimp htop curl git handbrake gtk-3-examples python3-pip cpu-x hardinfo mcomix gscan2pdf skanlite supertuxkart unzip gsmartcontrol kdenlive transmission-qt kid3 subtitlecomposer skanpage hugin kalk
 	runcheck sudo dpkg --add-architecture i386
 	runcheck sudo apt update -y
-	runcheck sudo apt install -y libc6-i386 libx11-6:i386 libegl1-mesa:i386 zlib1g:i386 libstdc++6:i386 libgl1-mesa-dri:i386 libasound2:i386
+	runcheck sudo apt install -y libc6-i386 libx11-6:i386 zlib1g:i386 libstdc++6:i386 libgl1-mesa-dri:i386 libasound2:i386
 	runcheck sudo apt install -y openjdk-17-jdk
 	java -version
 	sleep 3
@@ -209,8 +209,8 @@ full () {
 	runcheck flatpak install -y flathub info.febvre.Komikku
 	runcheck flatpak install -y flathub io.github.diegoivan.pdf_metadata_editor
 	runcheck flatpak uninstall -y --unused --delete-data
-	runcheck pip3 install pip wheel speedtest-cli mangadex-downloader[optional] animdl git+https://github.com/nathom/streamrip.git@dev -U
-	runcheck pip3 install --pre yt-dlp -U
+	runcheck pip3 install pip wheel -U --break-system-packages
+	runcheck pip3 install --pre yt-dlp -U --break-system-packages
 	runcheck pip3 cache purge
 	echo "Adding current user to cdrom group..."
 	runcheck sudo usermod -aG cdrom $USER
@@ -229,10 +229,10 @@ minimal () {
 	sleep 3
 	clear
 	common
-	runcheck sudo apt install -y ubuntu-restricted-extras muon pavucontrol elisa p7zip-full p7zip-rar ffmpeg dconf-editor ffmpegthumbs fonts-cantarell htop curl git gtk-3-examples python3-pip cpu-x hardinfo gscan2pdf skanlite unzip gsmartcontrol neofetch skanpage hugin
+	runcheck sudo apt install -y ubuntu-restricted-extras synaptic pavucontrol elisa p7zip-full p7zip-rar ffmpeg dconf-editor ffmpegthumbs fonts-cantarell htop curl git gtk-3-examples python3-pip cpu-x hardinfo gscan2pdf skanlite unzip gsmartcontrol neofetch skanpage hugin kalk
 	runcheck sudo dpkg --add-architecture i386
 	runcheck sudo apt update -y
-	runcheck sudo apt install -y libc6-i386 libx11-6:i386 libegl1-mesa:i386 zlib1g:i386 libstdc++6:i386 libgl1-mesa-dri:i386 libasound2:i386
+	runcheck sudo apt install -y libc6-i386 libx11-6:i386 zlib1g:i386 libstdc++6:i386 libgl1-mesa-dri:i386 libasound2:i386
 	languagepackinstall
 	runcheck sudo apt update -y
 	runcheck sudo apt full-upgrade -y --allow-downgrades
@@ -249,7 +249,7 @@ minimal () {
 	runcheck flatpak install -y flathub io.github.diegoivan.pdf_metadata_editor
 	runcheck flatpak update -y
 	runcheck flatpak uninstall -y --unused --delete-data
-	runcheck pip3 install pip wheel speedtest-cli -U
+	runcheck pip3 install pip wheel -U --break-system-packages
     runcheck pip3 cache purge
     appendbashrc2
 	autofontinstall
@@ -280,7 +280,7 @@ appendbashrc1 () {
 	appendbashrcinfo
 	echo "Adding sysupdate alias and neofetch to .bashrc..."
 	runcheck sed -i '/sysupdate/d' ~/.bashrc
-	runcheck echo 'alias sysupdate="sudo apt update -y && sudo apt full-upgrade -y --allow-downgrades && sudo apt autoremove -y --purge && sudo apt autoclean -y && flatpak update -y && flatpak uninstall -y --unused --delete-data && pip3 install pip wheel speedtest-cli mangadex-downloader[optional] animdl git+https://github.com/nathom/streamrip.git@dev -U && pip3 install --pre yt-dlp -U && pip3 cache purge"' >> ~/.bashrc
+	runcheck echo 'alias sysupdate="sudo apt update -y && sudo apt full-upgrade -y --allow-downgrades && sudo apt autoremove -y --purge && sudo apt autoclean -y && flatpak update -y && flatpak uninstall -y --unused --delete-data && pip3 install pip wheel -U --break-system-packages && pip3 install --pre yt-dlp -U --break-system-packages && pip3 cache purge"' >> ~/.bashrc
 	runcheck sed -i '/neofetch/d' ~/.bashrc
 	runcheck echo 'neofetch' >> ~/.bashrc
 }
@@ -289,7 +289,7 @@ appendbashrc2 () {
 	appendbashrcinfo
 	echo "Adding sysupdate alias and neofetch to .bashrc..."
 	runcheck sed -i '/sysupdate/d' ~/.bashrc
-	runcheck echo 'alias sysupdate="sudo apt update -y && sudo apt full-upgrade -y --allow-downgrades && sudo apt autoremove -y --purge && sudo apt autoclean -y && flatpak update -y && flatpak uninstall -y --unused --delete-data && pip3 install pip wheel speedtest-cli -U && pip3 cache purge"' >> ~/.bashrc
+	runcheck echo 'alias sysupdate="sudo apt update -y && sudo apt full-upgrade -y --allow-downgrades && sudo apt autoremove -y --purge && sudo apt autoclean -y && flatpak update -y && flatpak uninstall -y --unused --delete-data && pip3 install pip wheel -U --break-system-packages && pip3 cache purge"' >> ~/.bashrc
 	runcheck sed -i '/neofetch/d' ~/.bashrc
 	runcheck echo 'neofetch' >> ~/.bashrc
 }
@@ -305,7 +305,7 @@ autofontinstall () {
 echo "Loaded autofontinstall."
 languagepackinstall () {
 	echo "Installing language packs..."
-	runcheck sudo apt install -y ibus ibus-wayland ibus-anthy
+	runcheck sudo apt install -y ibus ibus-wayland ibus-mozc
 	runcheck2 sudo apt install -y $(check-language-support -l en)
 	runcheck2 sudo apt install -y $(check-language-support -l de)
 	runcheck2 sudo apt install -y $(check-language-support -l ja)
