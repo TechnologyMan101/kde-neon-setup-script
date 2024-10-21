@@ -4,9 +4,9 @@ Bash script to set up a fresh install of KDE Neon.
 
 # Documentation
 
-Version 5.18
+Version 5.19
 
-Supported KDE Neon Versions: Based on Ubuntu 22.04 LTS
+Supported KDE Neon Versions: Based on Ubuntu 24.04 LTS
 
 Recommended Free Space: 40 GB
 
