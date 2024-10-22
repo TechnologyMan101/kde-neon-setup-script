@@ -85,7 +85,7 @@ mainmenu () {
 	clear
  	tput setaf 3
 	echo "===================================="
-	echo " --- KDE Neon Setup Script 5.19 ---"
+	echo " --- KDE Neon Setup Script 5.20 ---"
 	echo "===================================="
 	echo "Supported KDE Neon Versions (x86_64): Ubuntu 24.04 LTS Base"
 	echo "Recommended Free Space: 40 GB"
@@ -210,7 +210,7 @@ full () {
 	runcheck flatpak install -y flathub io.github.diegoivan.pdf_metadata_editor
 	runcheck flatpak uninstall -y --unused --delete-data
 	runcheck pip3 install pip wheel -U --break-system-packages
-	runcheck pip3 install --pre yt-dlp -U --break-system-packages
+	runcheck pip3 install --pre yt-dlp[default] -U --break-system-packages
 	runcheck pip3 cache purge
 	echo "Adding current user to cdrom group..."
 	runcheck sudo usermod -aG cdrom $USER
@@ -280,7 +280,7 @@ appendbashrc1 () {
 	appendbashrcinfo
 	echo "Adding sysupdate alias and neofetch to .bashrc..."
 	runcheck sed -i '/sysupdate/d' ~/.bashrc
-	runcheck echo 'alias sysupdate="sudo apt update -y && sudo apt full-upgrade -y --allow-downgrades && sudo apt autoremove -y --purge && sudo apt autoclean -y && flatpak update -y && flatpak uninstall -y --unused --delete-data && pip3 install pip wheel -U --break-system-packages && pip3 install --pre yt-dlp -U --break-system-packages && pip3 cache purge"' >> ~/.bashrc
+	runcheck echo 'alias sysupdate="sudo apt update -y && sudo apt full-upgrade -y --allow-downgrades && sudo apt autoremove -y --purge && sudo apt autoclean -y && flatpak update -y && flatpak uninstall -y --unused --delete-data && pip3 install pip wheel -U --break-system-packages && pip3 install --pre yt-dlp[default] -U --break-system-packages && pip3 cache purge"' >> ~/.bashrc
 	runcheck sed -i '/neofetch/d' ~/.bashrc
 	runcheck echo 'neofetch' >> ~/.bashrc
 }
