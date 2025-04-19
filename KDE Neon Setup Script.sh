@@ -85,7 +85,7 @@ mainmenu () {
 	clear
  	tput setaf 3
 	echo "===================================="
-	echo " --- KDE Neon Setup Script 5.20 ---"
+	echo " --- KDE Neon Setup Script 5.21 ---"
 	echo "===================================="
 	echo "Supported KDE Neon Versions (x86_64): Ubuntu 24.04 LTS Base"
 	echo "Recommended Free Space: 40 GB"
@@ -177,7 +177,7 @@ full () {
 	sleep 3
     clear
 	common
-	runcheck sudo apt install -y ubuntu-restricted-extras synaptic remmina bleachbit frozen-bubble musescore3 asunder k3b libk3b8-extracodecs pavucontrol elisa solaar p7zip-full p7zip-rar lame neofetch ffmpeg webhttrack tree android-tools-adb android-tools-fastboot kwave kamoso nikwi supertux dconf-editor ffmpegthumbs fonts-cantarell krita gimp htop curl git handbrake gtk-3-examples python3-pip cpu-x hardinfo mcomix gscan2pdf skanlite supertuxkart unzip gsmartcontrol kdenlive transmission-qt kid3 subtitlecomposer skanpage hugin kalk
+	runcheck sudo apt install -y ubuntu-restricted-extras synaptic remmina bleachbit frozen-bubble musescore3 asunder k3b libk3b8-extracodecs pavucontrol elisa solaar p7zip-full p7zip-rar lame neofetch ffmpeg webhttrack tree android-tools-adb android-tools-fastboot kwave kamoso nikwi supertux dconf-editor ffmpegthumbs fonts-cantarell krita gimp htop curl git handbrake gtk-3-examples python3-pip cpu-x hardinfo mcomix gscan2pdf skanlite supertuxkart unzip gsmartcontrol kdenlive transmission-qt kid3 subtitlecomposer skanpage hugin kalk tesseract-ocr-eng tesseract-ocr-deu tesseract-ocr-jpn tesseract-ocr-tha
 	runcheck sudo dpkg --add-architecture i386
 	runcheck sudo apt update -y
 	runcheck sudo apt install -y libc6-i386 libx11-6:i386 zlib1g:i386 libstdc++6:i386 libgl1-mesa-dri:i386 libasound2:i386
@@ -197,7 +197,6 @@ full () {
 	runcheck flatpak install -y flathub net.minetest.Minetest
 	runcheck flatpak install -y flathub org.inkscape.Inkscape
 	runcheck flatpak install -y flathub com.github.jeromerobert.pdfarranger
-	runcheck flatpak install -y flathub com.github.muriloventuroso.pdftricks
 	runcheck flatpak install -y flathub com.github.tchx84.Flatseal
 	runcheck flatpak install -y flathub org.onlyoffice.desktopeditors
 	runcheck flatpak install -y flathub com.calibre_ebook.calibre
@@ -210,7 +209,7 @@ full () {
 	runcheck flatpak install -y flathub io.github.diegoivan.pdf_metadata_editor
 	runcheck flatpak uninstall -y --unused --delete-data
 	runcheck pip3 install pip wheel -U --break-system-packages
-	runcheck pip3 install --pre yt-dlp[default] -U --break-system-packages
+	runcheck pip3 install --pre yt-dlp[default,curl-cffi] -U --break-system-packages
 	runcheck pip3 cache purge
 	echo "Adding current user to cdrom group..."
 	runcheck sudo usermod -aG cdrom $USER
@@ -229,7 +228,7 @@ minimal () {
 	sleep 3
 	clear
 	common
-	runcheck sudo apt install -y ubuntu-restricted-extras synaptic pavucontrol elisa p7zip-full p7zip-rar ffmpeg dconf-editor ffmpegthumbs fonts-cantarell htop curl git gtk-3-examples python3-pip cpu-x hardinfo gscan2pdf skanlite unzip gsmartcontrol neofetch skanpage hugin kalk
+	runcheck sudo apt install -y ubuntu-restricted-extras synaptic pavucontrol elisa p7zip-full p7zip-rar ffmpeg dconf-editor ffmpegthumbs fonts-cantarell htop curl git gtk-3-examples python3-pip cpu-x hardinfo gscan2pdf skanlite unzip gsmartcontrol neofetch skanpage hugin kalk tesseract-ocr-eng tesseract-ocr-deu tesseract-ocr-jpn tesseract-ocr-tha
 	runcheck sudo dpkg --add-architecture i386
 	runcheck sudo apt update -y
 	runcheck sudo apt install -y libc6-i386 libx11-6:i386 zlib1g:i386 libstdc++6:i386 libgl1-mesa-dri:i386 libasound2:i386
@@ -241,7 +240,6 @@ minimal () {
 	runcheck flatpak install -y flathub org.kde.kclock
 	runcheck flatpak install -y flathub org.libreoffice.LibreOffice
 	runcheck flatpak install -y flathub com.github.jeromerobert.pdfarranger
-	runcheck flatpak install -y flathub com.github.muriloventuroso.pdftricks
 	runcheck flatpak install -y flathub com.github.tchx84.Flatseal
 	runcheck flatpak install -y flathub org.onlyoffice.desktopeditors
 	runcheck flatpak install -y flathub io.missioncenter.MissionCenter
@@ -250,7 +248,7 @@ minimal () {
 	runcheck flatpak update -y
 	runcheck flatpak uninstall -y --unused --delete-data
 	runcheck pip3 install pip wheel -U --break-system-packages
-    runcheck pip3 cache purge
+#     runcheck pip3 cache purge
     appendbashrc2
 	autofontinstall
 	finish
@@ -280,7 +278,7 @@ appendbashrc1 () {
 	appendbashrcinfo
 	echo "Adding sysupdate alias and neofetch to .bashrc..."
 	runcheck sed -i '/sysupdate/d' ~/.bashrc
-	runcheck echo 'alias sysupdate="sudo apt update -y && sudo apt full-upgrade -y --allow-downgrades && sudo apt autoremove -y --purge && sudo apt autoclean -y && flatpak update -y && flatpak uninstall -y --unused --delete-data && pip3 install pip wheel -U --break-system-packages && pip3 install --pre yt-dlp[default] -U --break-system-packages && pip3 cache purge"' >> ~/.bashrc
+	runcheck echo 'alias sysupdate="sudo apt update -y && sudo apt full-upgrade -y --allow-downgrades && sudo apt autoremove -y --purge && sudo apt autoclean -y && flatpak update -y && flatpak uninstall -y --unused --delete-data && pip3 install pip wheel -U --break-system-packages && pip3 install --pre yt-dlp[default,curl-cffi] -U --break-system-packages && pip3 cache purge"' >> ~/.bashrc
 	runcheck sed -i '/neofetch/d' ~/.bashrc
 	runcheck echo 'neofetch' >> ~/.bashrc
 }
