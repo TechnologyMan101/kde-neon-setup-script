@@ -4,7 +4,7 @@ Bash script to set up a fresh install of KDE Neon.
 
 # Documentation
 
-Version 5.20
+Version 5.21
 
 Supported KDE Neon Versions: Based on Ubuntu 24.04 LTS
 
