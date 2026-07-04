@@ -1,6 +1,7 @@
 # KDE Neon Setup Script
 Bash script to set up a fresh install of KDE Neon.
 
+# This script is no longer maintained. 
 
 # Documentation
 
